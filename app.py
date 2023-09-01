@@ -30,8 +30,20 @@ def server(input, output, session):
             if input.img_kind() == 'svg':
                 thesrc = _qrcode.svg_data_uri(scale=10)
             else:
-                thesrc = _qrcode.png_data_uri(scale=15)
-            return ui.tags.img({'src': thesrc, 'width': "600px"})
+                thesrc = _qrcode.png_data_uri(scale=25)
+            return ui.tags.p(ui.tags.img({
+                'src': thesrc,
+                'width': "600px"
+            })), ui.tags.div(
+                ui.tags.a(
+                    {
+                        'download': f'qrcode.{input.img_kind()}',
+                        'href': thesrc,
+                        "role": "button",
+                        "class": "btn btn-primary",
+                    },
+                    f"Download {input.img_kind().upper()}!",
+                ), {"style": "text-align: center; margin: auto;"})
 
 
 app = App(app_ui, server)
