@@ -44,7 +44,7 @@ if __name__ == '__main__':
 
 ## Input Group
 
-```{.python code-line-numbers="3-15|20-31"}
+```{.python code-line-numbers="3-15|27-32"}
 app.layout = html.Div([
     html.H1(children='QR Code App', style={'textAlign': 'center'}),
     dbc.InputGroup([
@@ -60,9 +60,16 @@ app.layout = html.Div([
                        "width": "60%",
                        "margin": "auto"
                    }),
-    html.Div(html.Img(id='output-image', width=600))
+    html.Div(
+        html.Img(
+            id='output-image',
+            width=600,
+            style={
+                'margin': 'auto',
+                'display': 'block'
+            },
+        ), )
 ])
-
 
 @callback(
     Output('output-image', 'src'),
@@ -76,9 +83,5 @@ def update_code(content, _):
     _qrcode = segno.make(content, micro=False)
 
     return _qrcode.svg_data_uri()
-
-
-
-
 
 ```

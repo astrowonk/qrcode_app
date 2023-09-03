@@ -19,7 +19,15 @@ app.layout = html.Div([
                        "width": "60%",
                        "margin": "auto"
                    }),
-    html.Div(html.Img(id='output-image', width=600))
+    html.Div(
+        html.Img(
+            id='output-image',
+            width=600,
+            style={
+                'margin': 'auto',
+                'display': 'block'
+            },
+        ), )
 ])
 
 
