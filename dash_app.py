@@ -57,7 +57,6 @@ def update_code(content, img_type, scale, _):
         return ''
 
     _qrcode = segno.make(content, micro=False)
-    print(type(scale))
     if img_type == "svg":
         return _qrcode.svg_data_uri(scale=scale)
     return _qrcode.png_data_uri(scale=scale)
