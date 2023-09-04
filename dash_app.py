@@ -8,7 +8,7 @@ parent_dir = Path().absolute().stem
 
 app = Dash(__name__,
            url_base_pathname=f"/dash/{parent_dir}/",
-           external_stylesheets=[dbc.themes.YETI, dbc.icons.YETI],
+           external_stylesheets=[dbc.themes.YETI],
            title="QR Code Generator",
            meta_tags=[
                {
