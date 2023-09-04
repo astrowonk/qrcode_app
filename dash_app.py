@@ -33,20 +33,15 @@ app.layout = html.Div([
                        "width": "60%",
                        "margin": "auto"
                    }),
-    html.Div(
-        html.Img(
-            id='output-image',
-            width=600,
-            style={
-                'margin': 'auto',
-                'display': 'block'
-            },
-        ), )
+    html.Div(id='my-output', style={
+        'text-align': 'center',
+        'margin': 'auto'
+    })
 ])
 
 
 @callback(
-    Output('output-image', 'src'),
+    Output('my-output', 'children'),
     State('content', 'value'),
     State('img-type', 'value'),
     State('scale', 'value'),
@@ -58,8 +53,30 @@ def update_code(content, img_type, scale, _):
 
     _qrcode = segno.make(content, micro=False)
     if img_type == "svg":
-        return _qrcode.svg_data_uri(scale=scale)
-    return _qrcode.png_data_uri(scale=scale)
+        _img = _qrcode.svg_data_uri(scale=scale)
+    else:
+        _img = _qrcode.png_data_uri(scale=scale)
+
+    return [
+        html.Img(
+            id='output-image',
+            src=_img,
+            width=400,
+            style={
+                'margin': 'auto',
+                'display': 'block'
+            },
+        ),
+        html.A(download=f'qrcode.{img_type}',
+               href=_img,
+               role='button',
+               children=f"Download {img_type.upper()}",
+               className="btn btn-primary",
+               style={
+                   'text-align': 'center',
+                   'margin': 'auto'
+               })
+    ]
 
 
 if __name__ == '__main__':
