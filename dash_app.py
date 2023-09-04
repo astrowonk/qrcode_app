@@ -79,5 +79,7 @@ def update_code(content, img_type, scale, _):
     ]
 
 
+server = app.server
+
 if __name__ == '__main__':
     app.run(debug=True)
