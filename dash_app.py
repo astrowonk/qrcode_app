@@ -54,9 +54,9 @@ app.layout = html.Div([
 
 @callback(
     Output('my-output', 'children'),
-    State('content', 'value'),
-    State('img-type', 'value'),
-    State('scale', 'value'),
+    Input('content', 'value'),
+    Input('img-type', 'value'),
+    Input('scale', 'value'),
     Input('go', 'n_clicks'),
 )
 def update_code(content, img_type, scale, _):
