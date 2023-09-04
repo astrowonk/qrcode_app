@@ -2,8 +2,20 @@ from dash import Dash, html, dcc, callback, Output, Input, State
 import dash_bootstrap_components as dbc
 import segno
 
-app = Dash(__name__, external_stylesheets=[dbc.themes.YETI])
+from pathlib import Path
 
+parent_dir = Path().absolute().stem
+
+app = Dash(__name__,
+           url_base_pathname=f"/dash/{parent_dir}/",
+           external_stylesheets=[dbc.themes.YETI, dbc.icons.YETI],
+           title="QR Code Generator",
+           meta_tags=[
+               {
+                   "name": "viewport",
+                   "content": "width=device-width, initial-scale=1"
+               },
+           ])
 app.layout = html.Div([
     html.H1(children='QR Code App', style={'textAlign': 'center'}),
     dbc.InputGroup([
