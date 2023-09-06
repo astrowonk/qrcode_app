@@ -42,7 +42,7 @@ if __name__ == '__main__':
 ```
 
 
-## Input Group
+## Dash Input Group
 
 ```{.python code-line-numbers="3-15|27-32"}
 app.layout = html.Div([
@@ -83,5 +83,41 @@ def update_code(content, _):
     _qrcode = segno.make(content, micro=False)
 
     return _qrcode.svg_data_uri()
+
+```
+
+## Shiny Code
+```{.python code-line-numbers="1-2|4-12|14-27"}
+
+from shiny import App, render, ui, reactive
+import segno
+
+app_ui = ui.page_bootstrap(
+    ui.h2("Shiny QR Code Generator"),
+    ui.layout_sidebar(
+        ui.panel_sidebar(
+            ui.input_text(id="text", label="Content"),
+            ui.input_action_button(id="go", label="Generate!"),
+        ), ui.panel_main(ui.output_ui("qrcode"), )))
+
+
+def server(input, output, session):
+
+    @output
+    @render.ui
+    def qrcode():
+        input.go()
+        with reactive.isolate():
+            if not input.text():
+                return ui.tags.p("Enter Content to generate QR Code.")
+            _qrcode = segno.make(input.text())
+            return ui.tags.img({
+                'src': _qrcode.svg_data_uri(),
+                'width': "600px"
+            })
+
+
+app = App(app_ui, server)
+
 
 ```
