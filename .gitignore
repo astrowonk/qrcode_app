@@ -2,3 +2,4 @@ __pycache__/
 code_slides_files/
 *.html
 quarto/*.pdf
+rsconnect-python/qrcode_app.json
