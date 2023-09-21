@@ -3,3 +3,4 @@ code_slides_files/
 *.html
 quarto/*.pdf
 rsconnect-python/qrcode_app.json
+my_shiny_app_html/
