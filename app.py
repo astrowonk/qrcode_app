@@ -1,7 +1,7 @@
 from shiny import App, render, ui, reactive
 import segno
 
-app_ui = ui.page_bootstrap(
+app_ui = ui.page_fluid(
     ui.panel_title("Shiny QR Code Generator"),
     ui.layout_sidebar(
         ui.panel_sidebar(
