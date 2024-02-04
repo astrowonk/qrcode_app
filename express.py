@@ -2,7 +2,7 @@ from shiny.express import input, render, ui
 from shiny import reactive
 import segno
 
-ui.page_opts(title='QR Code Generator')
+ui.page_opts(title='QR Code Generator Express')
 
 with ui.sidebar():
     ui.input_text(id="text", label="Content"),
